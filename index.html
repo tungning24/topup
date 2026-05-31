@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#7AC943">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mobile Helper</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+body{
+    background:#f5f7fa;
+    color:#333;
+}
+
+header{
+    background:#222;
+    color:#fff;
+    text-align:center;
+    padding:18px;
+    font-size:24px;
+    font-weight:bold;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.tabs{
+    display:flex;
+    overflow-x:auto;
+    background:#fff;
+    box-shadow:0 2px 5px rgba(0,0,0,.1);
+}
+
+.tab{
+    flex:1;
+    min-width:90px;
+    padding:14px;
+    text-align:center;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.tab.active{
+    color:#fff;
+}
+
+.tab.ais.active{background:#7AC943;}
+.tab.dtac.active{background:#00AEEF;}
+.tab.true.active{background:#ED1C24;}
+.tab.topup.active{background:#ff9800;}
+.tab.refund.active{background:#9c27b0;}
+
+.content{
+    display:none;
+    padding:15px;
+}
+
+.content.active{
+    display:block;
+}
+
+.card{
+    background:#fff;
+    border-radius:15px;
+    margin-bottom:12px;
+    overflow:hidden;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.card h3{
+    padding:12px;
+    color:#fff;
+}
+
+.ais-title{background:#7AC943;}
+.dtac-title{background:#00AEEF;}
+.true-title{background:#ED1C24;}
+.orange{background:#ff9800;}
+.purple{background:#9c27b0;}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+td{
+    padding:12px;
+    border-bottom:1px solid #eee;
+}
+
+td:first-child{
+    font-weight:bold;
+    width:45%;
+}
+
+@media (prefers-color-scheme: dark){
+
+    body{
+        background:#121212;
+        color:#eee;
+    }
+
+    .card,
+    .tabs{
+        background:#1e1e1e;
+    }
+
+    td{
+        border-color:#333;
+    }
+}
+</style>
+</head>
+
+<body>
+<script>
+if ("serviceWorker" in navigator) {
+
+    window.addEventListener("load", () => {
+
+        navigator.serviceWorker
+            .register("./service-worker.js")
+            .then(() => {
+                console.log("Service Worker Registered");
+            });
+
+    });
+
+}
+</script>
+
+<header>📱 Mobile Helper</header>
+
+<div class="tabs">
+    <div class="tab ais active" onclick="showTab('ais',this)">AIS</div>
+    <div class="tab dtac" onclick="showTab('dtac',this)">DTAC</div>
+    <div class="tab true" onclick="showTab('true',this)">TRUE</div>
+    <div class="tab topup" onclick="showTab('topup',this)">เติมเงิน</div>
+    <div class="tab refund" onclick="showTab('refund',this)">เงินคืน</div>
+</div>
+
+<!-- AIS -->
+<div id="ais" class="content active">
+<div class="card">
+<h3 class="ais-title">AIS</h3>
+<table>
+<tr><td>Call Center</td><td>1175</td></tr>
+<tr><td>Call Center 02</td><td>02-271-9000</td></tr>
+<tr><td>เช็คเบอร์ตัวเอง</td><td>*545#</td></tr>
+<tr><td>เช็คค่ายปลายทาง</td><td>*727*08xxxxxxxx#</td></tr>
+<tr><td>เช็คโปรโมชั่น</td><td>*777#</td></tr>
+<tr><td>เช็คยอดเงิน</td><td>*121#</td></tr>
+<tr><td>เปลี่ยนโปรโมชั่น</td><td>*777</td></tr>
+<tr><td>Voice Mail</td><td>*99</td></tr>
+</table>
+</div>
+</div>
+
+<!-- DTAC -->
+<div id="dtac" class="content">
+<div class="card">
+<h3 class="dtac-title">DTAC</h3>
+<table>
+<tr><td>Call Center</td><td>1678</td></tr>
+<tr><td>Call Center 02</td><td>02-202-7000</td></tr>
+<tr><td>เช็คเบอร์ตัวเอง</td><td>*102#</td></tr>
+<tr><td>เช็คค่ายปลายทาง</td><td>*102*08xxxxxxxx#</td></tr>
+<tr><td>เช็คโปรโมชั่น</td><td>*103#</td></tr>
+<tr><td>เช็คยอดเงิน</td><td>*101#</td></tr>
+<tr><td>เปลี่ยนโปรโมชั่น</td><td>*1003</td></tr>
+<tr><td>Voice Mail</td><td>*1802</td></tr>
+</table>
+</div>
+</div>
+
+<!-- TRUE -->
+<div id="true" class="content">
+<div class="card">
+<h3 class="true-title">TRUE</h3>
+<table>
+<tr><td>Call Center</td><td>1331</td></tr>
+<tr><td>เช็คเบอร์ตัวเอง</td><td>*933#</td></tr>
+<tr><td>เช็คค่ายปลายทาง</td><td>*933*08xxxxxxxx#</td></tr>
+<tr><td>เช็คโปรโมชั่น</td><td>*935#</td></tr>
+<tr><td>เช็คยอดเงิน</td><td>#123#</td></tr>
+<tr><td>เปลี่ยนโปรโมชั่น</td><td>9305</td></tr>
+</table>
+</div>
+</div>
+
+<!-- เติมเงิน -->
+<div id="topup" class="content">
+<div class="card">
+<h3 class="orange">รหัสเติมเงิน</h3>
+<table>
+<tr><td>AIS</td><td>*123*6878*เบอร์*จำนวนเงิน#</td></tr>
+<tr><td>TRUE</td><td>*666*เบอร์*จำนวนเงิน*8888#</td></tr>
+<tr><td>DTAC</td><td>*211*1*เบอร์*2728*จำนวนเงิน*1#</td></tr>
+<tr><td>Wi-Fi Password</td><td>2244668800</td></tr>
+</table>
+</div>
+</div>
+
+<!-- เงินคืน -->
+<div id="refund" class="content">
+<div class="card">
+<h3 class="purple">ขอเงินคืน</h3>
+<table>
+<tr><td>AIS (rom)</td><td>*321*รหัสของเรา*เลขท้าย4ตัวเบอร์ที่ผิด*Ref.#</td></tr>
+<tr><td>AIS Hotline</td><td>02-271-9123</td></tr>
+<tr><td>AIS mPAY</td><td>02-271-9299</td></tr>
+<tr><td>DTAC</td><td>*18405 รหัส / *211*8#</td></tr>
+<tr><td>DTAC แบบเต็ม</td><td>*211*8*เบอร์ที่ผิด*รหัสของเรา*จำนวนเงิน*1#</td></tr>
+<tr><td>TRUE</td><td>SMS 97322 หรือ 8700 กด 0</td></tr>
+</table>
+</div>
+</div>
+
+<table>
+<tr><td>Wifi : 2244668800</td>
+</table>
+
+<script>
+function showTab(id,el){
+
+document.querySelectorAll('.content')
+.forEach(x=>x.classList.remove('active'));
+
+document.querySelectorAll('.tab')
+.forEach(x=>x.classList.remove('active'));
+
+document.getElementById(id)
+.classList.add('active');
+
+el.classList.add('active');
+}
+</script>
+
+</body>
+</html>
