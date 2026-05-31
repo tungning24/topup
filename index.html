@@ -65,6 +65,10 @@ header{
     padding:15px;
 }
 
+.content-wifi{
+    padding:15px;
+}
+
 .content.active{
     display:block;
 }
@@ -87,6 +91,9 @@ header{
 .true-title{background:#ED1C24;}
 .orange{background:#ff9800;}
 .purple{background:#9c27b0;}
+.pink{background:#ff5ea9;}
+.black{background:#000000;}
+
 
 table{
     width:100%;
@@ -145,8 +152,8 @@ if ("serviceWorker" in navigator) {
     <div class="tab ais active" onclick="showTab('ais',this)">AIS</div>
     <div class="tab dtac" onclick="showTab('dtac',this)">DTAC</div>
     <div class="tab true" onclick="showTab('true',this)">TRUE</div>
-    <div class="tab topup" onclick="showTab('topup',this)">เติมเงิน</div>
-    <div class="tab refund" onclick="showTab('refund',this)">เงินคืน</div>
+    <!--<div class="tab topup" onclick="showTab('topup',this)">เติมเงิน</div>-->
+    <div class="tab refund" onclick="showTab('refund',this)">เติม/คืนเงิน</div>
 </div>
 
 <!-- AIS -->
@@ -213,6 +220,14 @@ if ("serviceWorker" in navigator) {
 <!-- เงินคืน -->
 <div id="refund" class="content">
 <div class="card">
+<h3 class="purple">รหัสเติมเงิน</h3>
+<table>
+<tr><td>AIS</td><td>*123*6878*เบอร์*จำนวนเงิน#</td></tr>
+<tr><td>TRUE</td><td>*666*เบอร์*จำนวนเงิน*8888#</td></tr>
+<tr><td>DTAC</td><td>*211*1*เบอร์*2728*จำนวนเงิน*1#</td></tr>
+</table>
+</div>
+<div class="card">
 <h3 class="purple">ขอเงินคืน</h3>
 <table>
 <tr><td>AIS (rom)</td><td>*321*รหัสของเรา*เลขท้าย4ตัวเบอร์ที่ผิด*Ref.#</td></tr>
@@ -225,9 +240,14 @@ if ("serviceWorker" in navigator) {
 </div>
 </div>
 
+<div id="wifi" class="content-wifi">
+<div class="card" >
+<h3 class="pink">Wi-Fi Password</h3>
 <table>
-<tr><td>Wi-Fi Password</td><td>2244668800</td></tr>
+<tr><td>2244668800</td></tr>
 </table>
+</div>
+</div>
 
 <script>
 function showTab(id,el){
